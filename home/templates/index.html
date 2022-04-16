@@ -1,0 +1,39 @@
+{% load static %}
+<!doctype html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>幸运</title>
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+</head>
+<body>
+<h1>彩票购买记录</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">组合</th>
+        <th scope="col">是否已购买</th>
+        <th scope="col">是否中奖</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for o in tickets %}
+        <tr>
+            <th scope="row">{{ o.id }}</th>
+            <td>{{ o.content }}</td>
+            <td>{{ o.has_purchased }}</td>
+            <td>{{ o.got_lottery }}</td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+<script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

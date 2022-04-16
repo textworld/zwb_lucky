@@ -143,3 +143,7 @@ CELERY_TIMEZONE = "Asia/Shanghai"
 CELERY_TASK_TIME_LIMIT = 30 * 60
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATICFILES_DIRS = [
+    ('bootstrap', os.path.join(BASE_DIR, 'bootstrap')),
+]
