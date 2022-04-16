@@ -16,9 +16,13 @@ logger = get_task_logger('schema')
 
 
 def send_email_with_pic(lucky_str):
+    nums = lucky_str.split(",")
+
     report = render_to_string("email_template.html", context={
-        "send_time": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        "lucky_str": lucky_str
+        "send_time": datetime.now().strftime("%Y年%m月%d日 %H:%M:%S"),
+        "lucky_str": lucky_str,
+        "red_nums": ' '.join(nums[:6]),
+        "blue_num": nums[6]
     })
 
     my_sender = settings.EMAIL_CONF.get("SENDER")
@@ -56,7 +60,7 @@ def make_lucky(self, identity=None):
         identity = uuid.uuid4()
     lucky_map = {}
     for i in range(1000000):
-        alphabet = [1, 9, 2, 11, 5, 21, 12, 19, 7, 3, 18, 30, 31, 32]
+        alphabet = [i for i in range(1, 33)]
         nums = set()
         while len(nums) < 6:
             nums.add(secrets.choice(alphabet))
